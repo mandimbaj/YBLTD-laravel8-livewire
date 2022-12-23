@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class DureeLocation extends Model
 {
     use HasFactory;
+
 }

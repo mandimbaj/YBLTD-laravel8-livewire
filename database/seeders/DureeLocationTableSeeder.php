@@ -15,8 +15,8 @@ class DureeLocationTableSeeder extends Seeder
     public function run()
     {
         DB::table("duree_locations")->insert([
-            ["libelle"=>"Journee,", "valeurEnHeure"=>24],
-            ["libelle" =>"Demi-journee,", "valeurEnHeure"=>12]
+            ["libelle"=>"Journee", "valeurEnHeure"=>24],
+            ["libelle" =>"Demi-journee", "valeurEnHeure"=>12]
         ]);
     }
 }

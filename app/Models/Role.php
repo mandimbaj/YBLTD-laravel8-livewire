@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Role extends Model
 {
     use HasFactory;
 
-
-    public function locations()
+    public function users()
     {
-        return $this->hasMany(Location::class);
+        return $this->belongsToMany(User::class, "user_role", "role_id", "user_id");
     }
 }

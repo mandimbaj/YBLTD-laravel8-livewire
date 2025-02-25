@@ -9,8 +9,10 @@
             </div>
 
             <h3 class=" text-center ellipsis">{{ userFullName() }}</h3>
-
-            <p class="text-muted text-center">Software Engineer</p>
+          {{--   @foreach(auth()->user()->roles as $role)
+            <p class="bg-primary text-center text-uppercase">{{$role->nom}}</p>
+            @endforeach --}}
+            <p class="bg-primary text-center text-uppercase">{{getRolesName()}}</p>
 
             <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">

@@ -5,6 +5,8 @@ use App\Models\TypeArticle;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Livewire\Utilisateurs;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,17 @@ use App\Http\Controllers\HomeController;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//le groupe des routes relatives aux administrateurs uniquement
+Route::group([
+    "middleware" => ["auth", "auth.admin"],
+    "as" => "admin."
+], function(){
+    Route::group([
+        "prefix" => "habilitations",
+        "as" => "habilitations."
+    ], function(){
+        Route::get("/utilisateurs", Utilisateurs::class)->name("users.index");
+    });
+});
+

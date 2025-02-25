@@ -46,7 +46,7 @@ class User extends Authenticatable
         return $this->hasMany(Paiement::class);
     }
 
-    public function role()
+    public function roles()
     {
         return $this->belongsToMany(Role::class, "user_role", "user_id", "role_id");
     }
@@ -55,5 +55,21 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Permission::class, "user_permission", "user_id",  "permission_id");
     }
+
+    public function hasRole($role)
+    {
+        return $this->roles()->where("nom", $role)->first() !== null;
+    }
+
+    public function hasAnyRole($roles)
+    {
+        return $this->roles()->whereIn("nom", $roles)->first() !== null;
+    }
+
+    public function getAllRoleNamesAttribute()
+    {
+        return $this->roles->implode("nom", " | ");
+    }
+
 }
 
